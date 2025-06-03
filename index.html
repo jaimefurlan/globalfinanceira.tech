@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Global Financeira - Soluções inovadoras em recuperação de crédito" />
+  <meta name="keywords" content="recuperação de crédito, cobrança, inteligência artificial, negociação" />
+  <meta name="author" content="Global Financeira" />
+  <meta name="theme-color" content="#00FF41" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Global Financeira - Soluções em Recuperação de Crédito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00FF41;
+      --primary-dark: #003B00;
+      --secondary: #FFB800;
+      --accent: #FF6B00;
+      --background: #000000;
+      --text: #E6FFE6;
+      --text-light: #B3FFB3;
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      --card-shadow: 0 4px 12px rgba(0, 255, 65, 0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(0, 0, 0, 0.95);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 255, 65, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--primary);
+      outline: none;
+    }
+
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+                  url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%23000000"/><path d="M0 0h100v100H0z" fill="none" stroke="%2300FF41" stroke-width="0.5"/></svg>');
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0, 255, 65, 0.1), rgba(255, 184, 0, 0.1));
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      animation: fadeInDown 1s ease-out forwards;
+      opacity: 0;
+      color: var(--primary);
+    }
+
+    .hero h2 {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 400;
+      color: var(--text-light);
+      animation: fadeIn 2s ease-out forwards;
+      opacity: 0;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .cta-button {
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .cta-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .cta-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--card-shadow);
+    }
+
+    section {
+      padding: clamp(4rem, 10vw, 8rem) 2rem;
+      max-width: 1200px;
+      margin: auto;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    section h2 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      color: var(--primary);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      max-width: 65ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 255, 65, 0.1);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border: 1px solid rgba(0, 255, 65, 0.2);
+    }
+
+    .feature-card:hover,
+    .feature-card:focus-within {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 255, 65, 0.2);
+      border-color: rgba(0, 255, 65, 0.4);
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    .feature-card p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: var(--primary-dark);
+      color: white;
+      font-size: 0.9rem;
+      position: relative;
+      border-top: 1px solid rgba(0, 255, 65, 0.2);
+      background: linear-gradient(to bottom, var(--primary-dark), #000000);
+    }
+
+    footer div {
+      margin: 0.8rem 0;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.6;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .feature-card {
+        padding: 2rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #000000;
+        --text: #E6FFE6;
+        --text-light: #B3FFB3;
+      }
+
+      header {
+        background: rgba(0, 0, 0, 0.95);
+      }
+
+      .feature-card {
+        background: rgba(0, 0, 0, 0.8);
+        border-color: rgba(0, 255, 65, 0.2);
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="Global Financeira Logo" width="40" height="40">
+  </div>
+  <nav>
+    <a href="#sobre" aria-label="Ir para seção Sobre">Sobre</a>
+    <a href="#servicos" aria-label="Ir para seção Serviços">Serviços</a>
+    <a href="#contato" aria-label="Ir para seção Contato">Contato</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Inteligência que transforma negócios</h1>
+  <h2>Somos um hub de soluções de relacionamento e cobrança, utilizando tecnologia de ponta para maximizar resultados</h2>
+  <div class="cta-buttons">
+    <a href="#contato" class="cta-button cta-primary">Quero contratar</a>
+    <a href="#contato" class="cta-button cta-secondary">Quero negociar</a>
+  </div>
+</div>
+
+<section id="sobre">
+  <h2>Sobre a Global</h2>
+  <p>
+    Somos uma empresa líder no mercado, oferecendo soluções inovadoras para cobrança e relacionamento. Nossa missão é transformar a experiência de recuperação de crédito através da tecnologia e inteligência artificial.
+  </p>
+  <p>
+    Com mais de 20 anos de experiência, atuamos em todas as etapas do seu negócio para trazer resultados reais, desde vendas até cobrança, sempre com foco na excelência e na satisfação do cliente.
+  </p>
+</section>
+
+<section id="servicos">
+  <h2>Nossas Soluções</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <h3>Vendas</h3>
+      <p>Estratégias de rentabilização para empresas, apoiado nos conceitos de up sell e cross sell.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Pós-vendas</h3>
+      <p>Atendimento ponta a ponta, com SAC 4.0, suporte e pesquisas para garantir resultados e satisfação.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Preventivo</h3>
+      <p>Ações preventivas para evitar a inadimplência, como follow, lembretes de cobrança e prorrogação de prazos.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Cobrança</h3>
+      <p>Negociação de dívidas B2B, B2C e internacional, contando com CRM de cobrança próprio.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Jurídico</h3>
+      <p>Oferecemos apoio jurídico com a expertise de escritório próprio, a Andre de Sá Advogados Associados.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Tecnologia</h3>
+      <p>Contamos com tecnologias de automação e IA integradas em todas as etapas dos nossos atendimentos.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <h2>Fale Conosco</h2>
+  <p>
+    Quer saber como podemos ajudar sua empresa a alcançar resultados extraordinários? Entre em contato com nossa equipe e descubra nossas soluções personalizadas.
+  </p>
+</section>
+
+<footer>
+  <div>GESTAO CONTACT CENTER E COBRANCA LTDA</div>
+  <div>CNPJ: 12.680.193/0001-58</div>
+  <div>ROD A 280 A, 6777, Sala 103</div>
+  <div>Itinga - Araquari - SC</div>
+  <div>CEP: 89.245-000</div>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll("section");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { 
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  sections.forEach(section => observer.observe(section));
+</script>
+</body>
+</html> 
